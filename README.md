@@ -1,4 +1,4 @@
-# Terraform: AWS Environment with Windows Server 2019 & RHEL 9
+# Terraform: AWS Environment with Windows Server 2019 & RHEL 9.7
 
 ## Youtube
 
