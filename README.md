@@ -2,8 +2,6 @@
 
 ## Youtube >>> https://www.youtube.com/watch?v=S3_gy96eVkE
 
----
-
 ## Overview
 
 This document outlines the step-by-step process for building an AWS lab environment using Terraform. The environment consists of two EC2 instances:
