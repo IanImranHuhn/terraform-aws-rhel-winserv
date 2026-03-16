@@ -397,5 +397,5 @@ terraform/
 
 - Install **Active Directory Domain Services (AD DS)** on the Windows Server instance
 - Promote the server to a **Domain Controller**
-- Join the RHEL 9.7 machine to the Active Directory domain using `realm join`
 - Configure authentication via **SSSD** on RHEL for AD login
+- Join the RHEL 9.7 machine to the Active Directory domain using `realm join`
