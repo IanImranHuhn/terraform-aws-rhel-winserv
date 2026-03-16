@@ -1,4 +1,4 @@
-# Terraform Lab: AWS Environment with Windows Server 2019 (Active Directory) & RHEL 9
+# Terraform: AWS Environment with Windows Server 2019 (Active Directory) & RHEL 9
 
 ## Youtube
 
