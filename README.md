@@ -6,10 +6,10 @@
 
 This document outlines the step-by-step process for building an AWS lab environment using Terraform. The environment consists of two EC2 instances:
 
-- **Windows Server 2019** — configured as an Active Directory domain controller
-- **RHEL 9.7** — a Linux client machine joined to the Active Directory domain
+- **Windows Server 2019**
+- **RHEL 9.7**
 
-The goal is to provision this infrastructure automatically via Terraform, then authenticate the Linux client through Active Directory.
+The goal is to provision this infrastructure automatically via Terraform.
 
 ---
 
