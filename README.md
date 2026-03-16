@@ -73,16 +73,12 @@ Create a `notes.txt` file in your Terraform directory to track AMI IDs and owner
 2. Search for **Windows Server 2019** — copy the AMI ID for `Microsoft Windows Server 2019 Base`
 3. Search for **Red Hat** — copy the AMI ID for `RHEL 9 HVM SSD Volume Type`
 
-Save both AMI IDs to your `notes.txt`.
-
 ### Finding Owner IDs via AWS CLI
 
 First, log in to the AWS CLI:
 
 ```bash
-aws configure
-# or
-aws sso login
+aws login
 ```
 
 Run the following command for **Windows Server 2019**:
@@ -102,8 +98,6 @@ aws ec2 describe-images \
   --region us-east-1 \
   --query 'Images[0].OwnerId'
 ```
-
-Save both owner IDs to `notes.txt`.
 
 > The owner ID ensures images come from legitimate, official vendors (e.g., Microsoft or Red Hat) rather than unknown third parties.
 
@@ -232,7 +226,7 @@ resource "aws_subnet" "shared_subnet" {
 }
 
 # Internet Gateway
-resource "aws_internet_gateway" "i_gate_gw" {
+resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
 }
 
@@ -242,12 +236,12 @@ resource "aws_route_table" "main" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.i_gate_gw.id
+    gateway_id = aws_internet_gateway.igw.id
   }
 }
 
 # Route Table Association
-resource "aws_route_table_association" "rt_a" {
+resource "aws_route_table_association" "rta" {
   subnet_id      = aws_subnet.shared_subnet.id
   route_table_id = aws_route_table.main.id
 }
@@ -316,7 +310,7 @@ Review the output for any errors. Common issues encountered and their fixes:
 ### Apply the Configuration
 
 ```bash
-terraform apply -auto-approve
+terraform apply --auto-approve
 ```
 
 ---
@@ -353,7 +347,7 @@ ssh -i "terraform_key.pem" ec2-user@<RHEL_PUBLIC_IP>
 3. Verify the OS:
 
 ```bash
-cat /etc/os-release
+cat /etc/redhat-release
 ```
 
 Expected output includes: `Red Hat Enterprise Linux 9.7`
@@ -363,13 +357,12 @@ Expected output includes: `Red Hat Enterprise Linux 9.7`
 1. In the AWS Console, select the Windows instance and click **Connect**
 2. Go to the **RDP Client** tab and click **Get Password**
 3. Upload the `.pem` file and click **Decrypt Password**
-4. Copy the **username** and **password**
-5. Open **Remote Desktop Connection (RDP)**
-6. Enter the public IP address and click **Connect**
-7. Enter the decrypted credentials and accept the certificate warning
+4. Download **Remote Desktop Protocol (RDP)** file
+5. Open **Remote Desktop Protocol (RDP)** file
+6. Copy / paste the **username** and decrypted **password** from AWS
+7. Accept the certificate prompts
 
-You will be greeted by **Server Manager**, confirming a successful connection to **Windows Server 2019 Datacenter**.
-
+You will be logged into the **Windows Server 2019 Datacenter** GUI with **Server Manager** available to use, confirming a successful connection.
 ---
 
 ## Summary
